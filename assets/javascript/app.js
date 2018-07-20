@@ -10,26 +10,26 @@ var gnQ;
 var gnAPIKey = "vbwkapt65qwb44jjw5vdc98h";
 var zip;
 
-$("#roviSubmit").on("click", function () {
-    event.preventDefault();
-    roviQ = $("#roviInput").val().trim();
-    console.log("this is the rovi query: " + roviQ);
-    var roviQueryURL = `https://api.rovicorp.com/search/v2.1/video/search?entitytype=onetimeonly&query=${roviQ}&rep=1&size=20&offset=0&language=en&country=US&format=json&apikey=${roviAPIKey}&sig=${roviSecret}`;
-    $.get(roviQueryURL).then(function (roviResponse) {
-        console.log(roviResponse);
-    });
-});
+// $("#roviSubmit").on("click", function () {
+//     event.preventDefault();
+//     roviQ = $("#roviInput").val().trim();
+//     console.log("this is the rovi query: " + roviQ);
+//     var roviQueryURL = `https://api.rovicorp.com/search/v2.1/video/search?entitytype=onetimeonly&query=${roviQ}&rep=1&size=20&offset=0&language=en&country=US&format=json&apikey=${roviAPIKey}&sig=${roviSecret}`;
+//     $.get(roviQueryURL).then(function (roviResponse) {
+//         console.log(roviResponse);
+//     });
+// });
 
-$("#sgSubmit").on("click", function () {
-    event.preventDefault();
-    sgQ = $("#sgInput").val().trim();
-    console.log("this is the seat geek query: " + sgQ);
-    var sgQueryURL = `https://api.seatgeek.com/2/events?client_id=${sgID}&client_secret=${sgSecret}&geoip=${ip}`;
-    $.get(sgQueryURL).then(function (sgResponse) {
-        console.log(sgResponse);
-    });
+// $("#sgSubmit").on("click", function () {
+//     event.preventDefault();
+//     sgQ = $("#sgInput").val().trim();
+//     console.log("this is the seat geek query: " + sgQ);
+//     var sgQueryURL = `https://api.seatgeek.com/2/events?client_id=${sgID}&client_secret=${sgSecret}&geoip=${ip}`;
+//     $.get(sgQueryURL).then(function (sgResponse) {
+//         console.log(sgResponse);
+//     });
 
-});
+// });
 
 //get user's IP address
 $.getJSON('https://json.geoiplookup.io/?callback=?', function (data) {
@@ -39,10 +39,14 @@ $.getJSON('https://json.geoiplookup.io/?callback=?', function (data) {
     zip = parseInt(data.postal_code);
     console.log("this is the zip: " + zip);
 });
+//code to format the data and time to ISO 8601 - This is for ISSUE #15
+var dateISO = new Date(moment().utcOffset(-8).format("YYYY-MM-DDTHH:mm"));
+var gnDate = encodeURIComponent(dateISO.toISOString().slice(0, 16) + "Z");
+console.log("this is the encoded grace note date", gnDate);
 
 $("#gnMovies").on("click", function () {
     event.preventDefault();
-    var gnMovieQueryURL = `https://data.tmsapi.com/v1.1/movies/showings?startDate=2018-07-19&zip=${zip}&api_key=${gnAPIKey}`;
+    var gnMovieQueryURL = `https://data.tmsapi.com/v1.1/movies/showings?startDate=${gnDate}&zip=${zip}&api_key=${gnAPIKey}`;
     console.log("This is the grace note Movie Showtime query: " + gnMovieQueryURL);
     $.get(gnMovieQueryURL).then(function (gnMovieResponse) {
         console.log(gnMovieResponse);
@@ -54,7 +58,7 @@ $("#gnMovies").on("click", function () {
 
 $("#gnTV").on("click", function () {
     event.preventDefault();
-    var gnTVQueryURL = `https://data.tmsapi.com/v1.1/programs/newShowAirings?lineupId=USA-TX42500-X&startDateTime=2018-07-19T16%3A30Z&api_key=${gnAPIKey}`;
+    var gnTVQueryURL = `https://data.tmsapi.com/v1.1/programs/newShowAirings?lineupId=USA-TX42500-X&startDateTime=${gnDate}&api_key=${gnAPIKey}`;
     console.log("This is the grace note Movie Showtime query: " + gnTVQueryURL);
     $.get(gnTVQueryURL).then(function (gnTVResponse) {
         console.log(gnTVResponse);
@@ -66,7 +70,7 @@ $("#gnTV").on("click", function () {
 
 $("#gnSports").on("click", function () {
     event.preventDefault();
-    var gnSportsQueryURL = `https://data.tmsapi.com/v1.1/sports/all/events/airings?lineupId=USA-TX42500-X&startDateTime=2018-07-19T16%3A30Z&api_key=${gnAPIKey}`;
+    var gnSportsQueryURL = `https://data.tmsapi.com/v1.1/sports/all/events/airings?lineupId=USA-TX42500-X&startDateTime=${gnDate}&api_key=${gnAPIKey}`;
     console.log("This is the grace note what sports are on TV query: " + gnSportsQueryURL);
     $.get(gnSportsQueryURL).then(function (gnSportsResponse) {
         console.log(gnSportsResponse);
@@ -78,13 +82,23 @@ $("#gnSports").on("click", function () {
 
 $("#gnTVMovies").on("click", function () {
     event.preventDefault();
-    var gnTVMoviesQueryURL = `https://data.tmsapi.com/v1.1/movies/airings?lineupId=USA-TX42500-X&startDateTime=2018-07-19T16%3A30Z&api_key=${gnAPIKey}`;
+    var gnTVMoviesQueryURL = `https://data.tmsapi.com/v1.1/movies/airings?lineupId=USA-TX42500-X&startDateTime=${gnDate}&api_key=${gnAPIKey}`;
     console.log("This is the grace note what movies are on TV query: " + gnTVMoviesQueryURL);
     $.get(gnTVMoviesQueryURL).then(function (gnTVMoviesResponse) {
         console.log(gnTVMoviesResponse);
         //notes on Movies are on TV
         //need to figure out how th differentiate the line up and the start date format - research ISO Date/Time format (ISO 8601).
         //need to figure out what the output should look like
+    });
+});
+//this is to get the Line up ID passed dynamically
+$("#gnLineup").on("click", function () {
+    event.preventDefault();
+    var gnLineupQueryURL = `http://data.tmsapi.com/v1.1/lineups?country=USA&postalCode=${zip}&api_key=${gnAPIKey}`;
+    console.log("This is the grace note what movies are on TV query: " + gnLineupQueryURL);
+    $.get(gnLineupQueryURL).then(function (gnLineupResponse) {
+        console.log(gnLineupResponse);
+
     });
 });
 
