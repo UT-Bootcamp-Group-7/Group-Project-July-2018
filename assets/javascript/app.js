@@ -7,7 +7,13 @@ var sgID = "MTIzMDQxNjh8MTUzMTg3OTg5My43Ng";
 var sgSecret = "97e028cca25f9000d81111771fd84a89bef791d0675c8be06d6d50b4547e3096";
 var ip;
 var gnQ;
-var gnAPIKey = "vbwkapt65qwb44jjw5vdc98h";
+var gnAPIKey = "pka4bvff8kt2ru6nsny8p3md";
+// Other available gnAPIKeys
+    // 1. pka4bvff8kt2ru6nsny8p3md
+    // 2. mhptv3trpfapay59nwzajpmu
+    // 3. vbwkapt65qwb44jjw5vdc98h
+
+// Gracenote site to request API keys: http://developer.tmsapi.com/apps/mykeys
 var zip;
 
 // $("#roviSubmit").on("click", function () {
@@ -31,6 +37,9 @@ var zip;
 
 // });
 
+
+//the rest of this document's code is separated between 1. the testing region and 2. the bootstrap template region
+//1. Testing region
 //get user's IP address
 $.getJSON('https://json.geoiplookup.io/?callback=?', function (data) {
     console.log(JSON.stringify(data, null, 2));
@@ -50,23 +59,10 @@ $("#gnMovies").on("click", function () {
     console.log("This is the grace note Movie Showtime query: " + gnMovieQueryURL);
     $.get(gnMovieQueryURL).then(function (gnMovieResponse) {
         console.log(gnMovieResponse);
-        //FOR LOOP BUG--displaying content as "Title: [object Object]:" goal: display the first ten results to the page using a for loop
-        // storing the data from the AJAX request in the results variable
         var results = gnMovieResponse;
-        var stringResults = JSON.stringify(results);
-        console.log(stringResults);
-        stringResults = stringResults.replace("", "test");
-        console.log(stringResults);
-        // Looping through each result item
-        for (var i = 0; i < results.length; i++) {
-          // Creating and storing a div tag
-          var dataDisplayDiv = $("<div>");
-          console.log(results[i]);
-          // Creating a paragraph tag with the result item's rating
-          var p = $("<p>").text("Title: " + results[i]);
-          dataDisplayDiv.append(p);
-          $("#apiFeedback").prepend(dataDisplayDiv);
-        };
+        for (var i = 0; i < 4; i++) {
+            $("#apiFeedback").append(`<div>Title: ${results[i].title}<br>Description: ${results[i].shortDescription}<br>Next Showtime: ${results[i].showtimes[i].dateTime}<br>Showing at: ${results[i].showtimes[i].theatre.name}<div>`);
+        }
 
         //notes on movies
         //need to figure out how to send a radius or even change locale if you don't want it to look up a movie from where you are at that time
@@ -117,6 +113,31 @@ $("#gnLineup").on("click", function () {
     $.get(gnLineupQueryURL).then(function (gnLineupResponse) {
         console.log(gnLineupResponse);
 
+    });
+});
+
+//2. Bootstrap Template Region
+//get user's IP address
+$.getJSON('https://json.geoiplookup.io/?callback=?', function (data) {
+    ip = data.ip
+    zip = parseInt(data.postal_code);
+    console.log("this is the zip: " + zip);
+});
+//code to format the data and time to ISO 8601 - This is for ISSUE #15
+var dateISO = new Date(moment().utcOffset(-8).format("YYYY-MM-DDTHH:mm"));
+var gnDate = encodeURIComponent(dateISO.toISOString().slice(0, 16) + "Z");
+console.log("this is the encoded grace note date", gnDate);
+
+$("#gnMovies").on("click", function () {
+    event.preventDefault();
+    var gnMovieQueryURL = `https://data.tmsapi.com/v1.1/movies/showings?startDate=${gnDate}&zip=${zip}&api_key=${gnAPIKey}`;
+    console.log("This is the grace note Movie Showtime query: " + gnMovieQueryURL);
+    $.get(gnMovieQueryURL).then(function (gnMovieResponse) {
+        console.log(gnMovieResponse);
+        var results = gnMovieResponse;
+        for (var i = 0; i < 4; i++) {
+            $("#apiFeedback").append(`<div>Title: ${results[i].title}<br>Description: ${results[i].shortDescription}<br>Next Showtime: ${results[i].showtimes[i].dateTime}<br>Showing at: ${results[i].showtimes[i].theatre.name}<div>`);
+        }
     });
 });
 
