@@ -35,19 +35,23 @@ $("#gnMovies").on("click", function () {
         console.log(gnMovieResponse);
         var results = gnMovieResponse;
         for (var i = 0; i < 5; i++) {
-            $("#apiFeedback").append(`<div>Title: ${results[i].title}<br>Description: ${results[i].shortDescription}<br>Next Showtime: ${results[i].showtimes[0].dateTime}<br>Showing at: ${results[i].showtimes[i].theatre.name}<div>`);
+
+
 
             var omdbQueryURL = `http://www.omdbapi.com/?t=${results[i].title}&apikey=${omdbKey}`;
 
             $.get(omdbQueryURL).then(function (omdbResponse) {
                 //turn the object into an array
-                var results2 = omdbResponse;
+                var results2 = Object.values(omdbResponse);
                 console.log("this is the OMBD Response: ", results2);
-                //     //code to do the comparison of the arrays
-                //     // var list = results2.filter(function (val) {
-                //     //     return results.includes(val)
+                // code to do the comparison of the arrays
+                // var list = results2.filter(function (val) {
+                //     return results.includes(val)
+                //     console.log("THIS IS THE LIST: ", list);
+                // });
+                $("#apiFeedback").append(`<div>Title: ${results[i].title}<br>Description: ${results[i].shortDescription}<br>Next Showtime: ${results[i].showtimes[0].dateTime}<br>Showing at: ${results[i].showtimes[i].theatre.name}<br><div id="poster"><img src="${Object.values(omdbResponse)[13]}"></div></div>`);
             });
-            // console.log("THIS IS THE LIST: ", list);
+           
         };
 
     });
