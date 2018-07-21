@@ -50,6 +50,24 @@ $("#gnMovies").on("click", function () {
     console.log("This is the grace note Movie Showtime query: " + gnMovieQueryURL);
     $.get(gnMovieQueryURL).then(function (gnMovieResponse) {
         console.log(gnMovieResponse);
+        //FOR LOOP BUG--displaying content as "Title: [object Object]:" goal: display the first ten results to the page using a for loop
+        // storing the data from the AJAX request in the results variable
+        var results = gnMovieResponse;
+        var stringResults = JSON.stringify(results);
+        console.log(stringResults);
+        stringResults = stringResults.replace("", "test");
+        console.log(stringResults);
+        // Looping through each result item
+        for (var i = 0; i < results.length; i++) {
+          // Creating and storing a div tag
+          var dataDisplayDiv = $("<div>");
+          console.log(results[i]);
+          // Creating a paragraph tag with the result item's rating
+          var p = $("<p>").text("Title: " + results[i]);
+          dataDisplayDiv.append(p);
+          $("#apiFeedback").prepend(dataDisplayDiv);
+        };
+
         //notes on movies
         //need to figure out how to send a radius or even change locale if you don't want it to look up a movie from where you are at that time
         //need to figure out what the output should look like
