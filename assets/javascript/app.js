@@ -7,14 +7,14 @@ var sgID = "MTIzMDQxNjh8MTUzMTg3OTg5My43Ng";
 var sgSecret = "97e028cca25f9000d81111771fd84a89bef791d0675c8be06d6d50b4547e3096";
 var ip;
 var gnQ;
-var gnAPIKey = "pka4bvff8kt2ru6nsny8p3md";
+var gnAPIKey = "mhptv3trpfapay59nwzajpmu";
 // Other available gnAPIKeys
-    // 1. pka4bvff8kt2ru6nsny8p3md
-    // 2. mhptv3trpfapay59nwzajpmu
-    // 3. vbwkapt65qwb44jjw5vdc98h
+// 1. pka4bvff8kt2ru6nsny8p3md
+// 2. mhptv3trpfapay59nwzajpmu
+// 3. vbwkapt65qwb44jjw5vdc98h
 
 // Gracenote site to request API keys: http://developer.tmsapi.com/apps/mykeys
-var zip;
+// var zip;
 
 // $("#roviSubmit").on("click", function () {
 //     event.preventDefault();
@@ -38,9 +38,9 @@ var zip;
 // });
 
 
-//the rest of this document's code is separated between 1. the testing region and 2. the bootstrap template region
-//1. Testing region
-//get user's IP address
+// // the rest of this document's code is separated between 1. the testing region and 2. the bootstrap template region
+// // 1. Testing region
+// // get user's IP address
 // $.getJSON('https://json.geoiplookup.io/?callback=?', function (data) {
 //     console.log(JSON.stringify(data, null, 2));
 //     ip = data.ip
@@ -128,18 +128,24 @@ var dateISO = new Date(moment().utcOffset(-8).format("YYYY-MM-DDTHH:mm"));
 var gnDate = encodeURIComponent(dateISO.toISOString().slice(0, 16) + "Z");
 console.log("this is the encoded grace note date", gnDate);
 
-$(".container").on("click", function (event) {
-    console.log("Successfully clicked");
-    event.preventDefault();
-    
-    var gnMovieQueryURL = `https://data.tmsapi.com/v1.1/movies/showings?startDate=${gnDate}&zip=${zip}&api_key=${gnAPIKey}`;
-    // $.get(gnMovieQueryURL).then(function (gnMovieResponse) {
-    //     console.log(gnMovieResponse);
-    //     var results = gnMovieResponse;
-    //     for (var i = 0; i < 4; i++) {
-    //         $("#displayTitleOne").append(`<div>${results[0].title}`);
-    //         // $("#"br>Description: ${results[i].shortDescription}<br>Next Showtime: ${results[i].showtimes[i].dateTime}<br>Showing at: ${results[i].showtimes[i].theatre.name}<div>`);
-    //     }
-    // });
-});
+$(document).ready(function () {
 
+    $("#inTheatersNow").on("click", function (event) {
+        console.log("Successfully clicked");
+        event.preventDefault();
+        var gnMovieQueryURL = `https://data.tmsapi.com/v1.1/movies/showings?startDate=${gnDate}&zip=${zip}&api_key=${gnAPIKey}`;
+        $.get(gnMovieQueryURL).then(function (gnMovieResponse) {
+            console.log(gnMovieResponse);
+            var results = gnMovieResponse;
+            for (var i = 0; i < 1; i++) {
+                $("#displayTitleOne").append(`<div>${results[0].title}<div>`);
+                $("#displayDescriptionOne").append(`<div>${results[0].shortDescription}<div>`);
+                $("#displayNextShowtimeOne").append(`<div>${results[0].showtimes[0].dateTime}<div>`);
+                $("#displayTheaterOne").append(`<div>${results[0].showtimes[0].theatre.name}<div>`);
+
+                // $("#displayTitleTwo").append(`<div>${results[1].title}`);
+                // <br>Description: ${results[i].shortDescription}<br>Next Showtime: ${results[i].showtimes[i].dateTime}<br>Showing at: ${results[i].showtimes[i].theatre.name}<div>`);
+            }
+        });
+    });
+});
