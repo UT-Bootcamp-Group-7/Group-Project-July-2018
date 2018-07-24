@@ -140,14 +140,8 @@ $(document).ready(function () {
                 $("#displayNextShowtimeOne").append(`<div>${results[0].showtimes[0].dateTime}<div>`);
                 $("#displayTheaterOne").append(`<div>${results[0].showtimes[0].theatre.name}<div>`);
                 // Below line not working--need to append the movie poster to the other half of the screen
-                // Results for Title 2
-                $("#poster").append(`<div>${results2[13]}<div>`);
-
-                // Results for Title 3
-                $("#displayTitleThree").append(`<div>${results[2].title}<div>`);
-                $("#displayDescriptionThree").append(`<div>${results[2].shortDescription}<div>`);
-                $("#displayNextShowtimeThree").append(`<div>${results[2].showtimes[0].dateTime}<div>`);
-                $("#displayTheaterThree").append(`<div>${results[2].showtimes[0].theatre.name}<div>`);
+                
+                //$("#poster").append(`<div>${results2[13]}<div>`);
 
                 // Results for Title 2
                 $("#displayTitleTwo").append(`<div>${results[1].title}<div>`);
