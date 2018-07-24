@@ -122,22 +122,56 @@ var gnDate = encodeURIComponent(dateISO.toISOString().slice(0, 16) + "Z");
 console.log("this is the encoded grace note date", gnDate);
 
 $(document).ready(function () {
+    // Hidding the generic text on first load of the page, when a button is clicked then the text is shown.
+    $(".genericText").hide();
 
     $("#inTheatersNow").on("click", function (event) {
         console.log("Successfully clicked");
+        $(".genericText").show();
         event.preventDefault();
         var gnMovieQueryURL = `https://data.tmsapi.com/v1.1/movies/showings?startDate=${gnDate}&zip=${zip}&api_key=${gnAPIKey}`;
         $.get(gnMovieQueryURL).then(function (gnMovieResponse) {
             console.log(gnMovieResponse);
             var results = gnMovieResponse;
             for (var i = 0; i < 1; i++) {
+                // Results for Title 1
                 $("#displayTitleOne").append(`<div>${results[0].title}<div>`);
                 $("#displayDescriptionOne").append(`<div>${results[0].shortDescription}<div>`);
                 $("#displayNextShowtimeOne").append(`<div>${results[0].showtimes[0].dateTime}<div>`);
                 $("#displayTheaterOne").append(`<div>${results[0].showtimes[0].theatre.name}<div>`);
+                // Below line not working--need to append the movie poster to the other half of the screen
+                // Results for Title 2
+                $("#poster").append(`<div>${results2[13]}<div>`);
 
-                // $("#displayTitleTwo").append(`<div>${results[1].title}`);
-                // <br>Description: ${results[i].shortDescription}<br>Next Showtime: ${results[i].showtimes[i].dateTime}<br>Showing at: ${results[i].showtimes[i].theatre.name}<div>`);
+                // Results for Title 3
+                $("#displayTitleThree").append(`<div>${results[2].title}<div>`);
+                $("#displayDescriptionThree").append(`<div>${results[2].shortDescription}<div>`);
+                $("#displayNextShowtimeThree").append(`<div>${results[2].showtimes[0].dateTime}<div>`);
+                $("#displayTheaterThree").append(`<div>${results[2].showtimes[0].theatre.name}<div>`);
+
+                // Results for Title 2
+                $("#displayTitleTwo").append(`<div>${results[1].title}<div>`);
+                $("#displayDescriptionTwo").append(`<div>${results[1].shortDescription}<div>`);
+                $("#displayNextShowtimeTwo").append(`<div>${results[1].showtimes[0].dateTime}<div>`);
+                $("#displayTheaterTwo").append(`<div>${results[1].showtimes[0].theatre.name}<div>`);
+
+                // Results for Title 3
+                $("#displayTitleThree").append(`<div>${results[2].title}<div>`);
+                $("#displayDescriptionThree").append(`<div>${results[2].shortDescription}<div>`);
+                $("#displayNextShowtimeThree").append(`<div>${results[2].showtimes[0].dateTime}<div>`);
+                $("#displayTheaterThree").append(`<div>${results[2].showtimes[0].theatre.name}<div>`);
+
+                // Results for Title 4
+                $("#displayTitleFour").append(`<div>${results[3].title}<div>`);
+                $("#displayDescriptionFour").append(`<div>${results[3].shortDescription}<div>`);
+                $("#displayNextShowtimeFour").append(`<div>${results[3].showtimes[0].dateTime}<div>`);
+                $("#displayTheaterFour").append(`<div>${results[3].showtimes[0].theatre.name}<div>`);
+
+                // Results for Title 5
+                $("#displayTitleFive").append(`<div>${results[4].title}<div>`);
+                $("#displayDescriptionFive").append(`<div>${results[4].shortDescription}<div>`);
+                $("#displayNextShowtimeFive").append(`<div>${results[4].showtimes[0].dateTime}<div>`);
+                $("#displayTheaterFive").append(`<div>${results[4].showtimes[0].theatre.name}<div>`);
             }
         });
     });
