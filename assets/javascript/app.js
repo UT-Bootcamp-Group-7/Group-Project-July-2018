@@ -1,7 +1,7 @@
 //API KEYS
 var ip;
 var gnQ;
-var gnAPIKey = "mhptv3trpfapay59nwzajpmu";
+var gnAPIKey = "pka4bvff8kt2ru6nsny8p3md";
 var omdbKey = "f7676cd9";
 
 // Other available gnAPIKeys
@@ -29,7 +29,7 @@ console.log("this is the encoded grace note date", gnDate);
 
 $("#gnMovies").on("click", function () {
     event.preventDefault();
-    var gnMovieQueryURL = `https://data.tmsapi.com/v1.1/movies/showings?startDate=${gnDate}&zip=19406&api_key=${gnAPIKey}`;
+    var gnMovieQueryURL = `https://data.tmsapi.com/v1.1/movies/showings?startDate=${gnDate}&zip=${zip}&api_key=${gnAPIKey}`;
     console.log("This is the grace note Movie Showtime query: " + gnMovieQueryURL);
     $.get(gnMovieQueryURL).then(function (gnMovieResponse) {
         console.log(gnMovieResponse);
