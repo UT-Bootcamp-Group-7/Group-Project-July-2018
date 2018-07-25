@@ -22,16 +22,16 @@
 
   <!-- Custom Favicon -->
   <link rel="icon" type="image/png" sizes="96x96" href="./assets/css/custom-css/teamFavicon.png">
-
+  
   <!-- jquery CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   <!-- Moment.js Reference -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-
+  
   <!-- Firebase Reference -->
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
-
+ 
 
 </head>
 
@@ -63,8 +63,8 @@
       <button class="btn btn-primary" type="button" id="logout">Logout</button>
     </div>
   </nav>
-
-  <!-- Icons Grid -->
+     
+ <!-- Icons Grid -->
   <section class="features-icons bg-light text-center">
     <header class="masthead text-white text-center">
       <div class="container">
@@ -87,6 +87,52 @@
               <h3>In Theaters Now</h3>
               <p class="lead mb-0">See what movies are playing in your area</p>
             </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image Showcases -->
+  <section class="showcase">
+    <div class="container-fluid p-0">
+      <div class="row no-gutters">
+
+        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/css/bootstrap-landing-page-template/img/bg-showcase-1.jpg');"></div>
+        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+          <h2>Fully Responsive Design</h2>
+          <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether
+            it's a phone, tablet, or desktop the page will behave responsively!</p>
+        </div>
+      </div>
+      <div class="row no-gutters">
+        <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/css/bootstrap-landing-page-template/img/bg-showcase-2.jpg');"></div>
+        <div class="col-lg-6 my-auto showcase-text">
+          <h2>Updated For Bootstrap 4</h2>
+          <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 4 is leading the way in mobile responsive web development!
+            All of the themes on Start Bootstrap are now using Bootstrap 4!</p>
+        </div>
+      </div>
+      <div class="row no-gutters">
+        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/css/bootstrap-landing-page-template/img/bg-showcase-3.jpg');"></div>
+        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+          <h2>Easy to Use &amp; Customize</h2>
+          <p class="lead mb-0">Landing Page is just HTML and CSS with a splash of SCSS for users who demand some deeper customization options.
+            Out of the box, just add your content and images, and your new landing page will be ready to go!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials text-center bg-light">
+    <div class="container">
+      <h2 class="mb-5">What people are saying...</h2>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+            <img class="img-fluid rounded-circle mb-3" src="assets/css/bootstrap-landing-page-template/img/testimonials-1.jpg" alt="">
+            <h5>Margaret E.</h5>
+            <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
             <button type="submit" id="inTheatersNow" class="btn btn-block btn-md btn-primary">Submit</button>
           </div>
           <div class="col-lg-3">
@@ -110,7 +156,6 @@
             <button type="submit" id="discoveryQuiz" class="btn btn-block btn-md btn-primary">Submit</button>
           </div>
         </div>
-      </div>
     </header>
   </section>
 
@@ -152,26 +197,26 @@
       </div>
 
       <div class="row no-gutters">
-        <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/css/bootstrap-landing-page-template/img/bg-showcase-2.jpg');"></div>
-        <div class="col-lg-6 my-auto showcase-text">
-          <h2 id="displayTitleFour"></h2>
-          <p class="lead" id="displayDescriptionFour"></p>
-          <p class="font-weight-light genericText">Next Showtime Listed Below!</p>
-          <p class="font-weight-light genericText" id="displayNextShowtimeFour">Time: </p>
-          <p class="font-weight-light genericText" id="displayTheaterFour">Location: </p>
+          <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/css/bootstrap-landing-page-template/img/bg-showcase-2.jpg');"></div>
+          <div class="col-lg-6 my-auto showcase-text">
+            <h2 id="displayTitleFour"></h2>
+            <p class="lead" id="displayDescriptionFour"></p>
+            <p class="font-weight-light genericText">Next Showtime Listed Below!</p>
+            <p class="font-weight-light genericText" id="displayNextShowtimeFour">Time: </p>
+            <p class="font-weight-light genericText" id="displayTheaterFour">Location: </p>
+          </div>
         </div>
-      </div>
-
-      <div class="row no-gutters">
-        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/css/bootstrap-landing-page-template/img/bg-showcase-3.jpg');"></div>
-        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-          <h2 id="displayTitleFive"></h2>
-          <p class="lead" id="displayDescriptionFive"></p>
-          <p class="font-weight-light genericText">Next Showtime Listed Below!</p>
-          <p class="font-weight-light genericText" id="displayNextShowtimeFive">Time: </p>
-          <p class="font-weight-light genericText" id="displayTheaterFive">Location: </p>
+  
+        <div class="row no-gutters">
+          <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/css/bootstrap-landing-page-template/img/bg-showcase-3.jpg');"></div>
+          <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+            <h2 id="displayTitleFive"></h2>
+            <p class="lead" id="displayDescriptionFive"></p>
+            <p class="font-weight-light genericText">Next Showtime Listed Below!</p>
+            <p class="font-weight-light genericText" id="displayNextShowtimeFive">Time: </p>
+            <p class="font-weight-light genericText" id="displayTheaterFive">Location: </p>
+          </div>
         </div>
-      </div>
 
     </div>
   </section>
