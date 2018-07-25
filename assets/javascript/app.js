@@ -88,7 +88,7 @@ $("#gnMovies").on("click", function () {
         results = gnMovieResponse;
 
         for (var i = 0; i < 5; i++) {
-            var omdbQueryURL = `http://www.omdbapi.com/?t=${results[i].title}&apikey=${omdbKey}`;
+            var omdbQueryURL = `https://www.omdbapi.com/?t=${results[i].title}&apikey=${omdbKey}`;
             await $.get(omdbQueryURL).then(function (omdbResponse) {
                 //turn the object into an array
                 results2 = Object.values(omdbResponse);
@@ -167,6 +167,46 @@ var dateISO = new Date(moment().utcOffset(-8).format("YYYY-MM-DDTHH:mm"));
 var gnDate = encodeURIComponent(dateISO.toISOString().slice(0, 16) + "Z");
 console.log("this is the encoded grace note date", gnDate);
 
+//click handler for whenever a user clicks on our suggested picks
+$("#ourSuggestedPick").on("click", function () {
+    event.preventDefault();
+    $("#moviesInTheaters").removeAttr("hidden");
+    $("#moviesOnTV").removeAttr("hidden");
+    $("#tvShowsOnTV").removeAttr("hidden");
+});
+
+//click handler for whenever a user wants a suggested pick for movies in theaters
+$("#moviesInTheaters").on("click", function () {
+    //prevent refresh of the page on click
+    event.preventDefault();
+    //clear the api feedback div on every click
+    $("#apiFeedback").empty();
+    // //code to make it open the movies in theaters html in a new tab
+    // window.open(
+    //     './MoviesInTheaters.html',
+    //     '_blank' // <- This is what makes it open in a new window.
+    //   );
+    // Using the same logic as the test search for movies in theaters  
+    var gnMovieQueryURL = `https://data.tmsapi.com/v1.1/movies/showings?startDate=${gnDate}&zip=${zip}&api_key=${gnAPIKey}`;
+    console.log("This is the grace note Movie Showtime query: " + gnMovieQueryURL);
+    $.get(gnMovieQueryURL).then(async function (gnMovieResponse) {
+        console.log(gnMovieResponse);
+        results = gnMovieResponse;
+        //instead of a forloop here, just setting i to a random number between 1 and 5
+        var i = Math.floor(Math.random() * 5)
+        console.log("this is i: ", i)
+        var omdbQueryURL = `https://www.omdbapi.com/?t=${results[i].title}&apikey=${omdbKey}`;
+        await $.get(omdbQueryURL).then(function (omdbResponse) {
+            //turn the object into an array
+            results2 = Object.values(omdbResponse);
+            console.log("THIS IS RESULTS 2:", results2)
+        });
+        $("#apiFeedback").append(`<div class="test">Title: ${results[i].title}<br>Description: ${results[i].shortDescription}<br>Next Showtime: ${results[i].showtimes[0].dateTime}<br>Showing at: ${results[i].showtimes[i].theatre.name}<br><div id="poster"><img src="${results2[13]}"></div></div>`);
+
+    });
+});
+
+
 $(document).ready(function () {
     // Hidding the generic text on first load of the page, when a button is clicked then the text is shown.
     $(".genericText").hide();
@@ -186,7 +226,7 @@ $(document).ready(function () {
                 $("#displayNextShowtimeOne").append(`<div>${results[0].showtimes[0].dateTime}<div>`);
                 $("#displayTheaterOne").append(`<div>${results[0].showtimes[0].theatre.name}<div>`);
                 // Below line not working--need to append the movie poster to the other half of the screen
-                
+
                 //$("#poster").append(`<div>${results2[13]}<div>`);
 
                 // Results for Title 2
