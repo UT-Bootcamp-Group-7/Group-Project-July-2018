@@ -192,7 +192,7 @@ $("#moviesInTheaters").on("click", function () {
     $.get(gnMovieQueryURL).then(async function (gnMovieResponse) {
         console.log(gnMovieResponse);
         results = gnMovieResponse;
-        //instead of a forloop here, just setting i to a random number between 1 and 5
+        //instead of a forloop here, just setting i to a random number between 0 and 5
         var i = Math.floor(Math.random() * 5)
         console.log("this is i: ", i)
         var omdbQueryURL = `https://www.omdbapi.com/?t=${results[i].title}&apikey=${omdbKey}`;
@@ -206,6 +206,30 @@ $("#moviesInTheaters").on("click", function () {
     });
 });
 
+//click handler for whenever a user wants a suggested pick for movies playing on TV
+$("#moviesOnTV").on("click", function () {
+    //prevent refresh of the page on click
+    event.preventDefault();
+    //clear the api feedback div on every click
+    $("#apiFeedback").empty();
+    var gnTVMoviesQueryURL = `https://data.tmsapi.com/v1.1/movies/airings?lineupId=USA-TX42500-X&startDateTime=${gnDate}&api_key=${gnAPIKey}`;
+    console.log("This is the grace note what movies are on TV query: " + gnTVMoviesQueryURL);
+    $.get(gnTVMoviesQueryURL).then(async function (gnTVMoviesResponse) {
+        console.log("This is the GraceNot TV Movies Response: ", gnTVMoviesResponse);
+        results = gnTVMoviesResponse;
+        //instead of a forloop here, just setting i to a random number between 0 and 100
+        var i = Math.floor(Math.random() * 100)
+        console.log("this is i: ", i)
+        //passing in the movie title to search for a poster
+        var omdbQueryURL = `https://www.omdbapi.com/?t=${results[i].program.title}&apikey=${omdbKey}`;
+        await $.get(omdbQueryURL).then(function (omdbResponse) {
+            //turn the object into an array
+            results2 = Object.values(omdbResponse);
+            console.log("THIS IS RESULTS 2:", results2)
+        });
+        $("#apiFeedback").append(`<div class="test">Title: ${results[i].program.title}<br>Description: ${results[i].program.shortDescription}<br>Next Showtime: ${results[i].startTime}<br>Playing On: ${results[i].station.callSign} on channel ${results[i].station.channel}<br><div id="poster"><img src="${results2[13]}"></div></div>`);
+    });
+});
 
 $(document).ready(function () {
     // Hidding the generic text on first load of the page, when a button is clicked then the text is shown.
