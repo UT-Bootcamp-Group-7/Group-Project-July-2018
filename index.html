@@ -8,7 +8,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap core CSS -->
-
   <link href="./assets/css/bootstrap-landing-page-template/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
   <!-- Custom fonts for this template -->
@@ -20,8 +19,14 @@
   <!-- Custom styles for this template -->
   <link href="./assets/css/bootstrap-landing-page-template/css/landing-page.min.css" rel="stylesheet">
 
+  <!-- Results styling -->
+  <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/cyborg/bootstrap.min.css">
+
   <!-- Custom Favicon -->
   <link rel="icon" type="image/png" sizes="96x96" href="./assets/css/custom-css/teamFavicon.png">
+
+  <!-- Custom CSS Styling (As Needed) -->
+  <link rel="stylesheet" type="text/css" href="./assets/css/custom-css/customizeTemplate.css">
 
   <!-- jquery CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -64,9 +69,32 @@
     </div>
   </nav>
 
+  <!-- Masthead -->
+  <header class="masthead text-white text-center">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-9 mx-auto">
+          <h1 class="mb-5">Search for a Movie</h1>
+        </div>
+        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+          <form id="searchForm">
+            <div class="form-row">
+              <div class="col-12 col-md-9 mb-2 mb-md-0">
+                <input type="text" class="form-control form-control-lg" id="searchText" placeholder="Enter movie title here...">
+              </div>
+              <div class="col-12 col-md-3">
+                <button type="submit" class="btn btn-block btn-lg btn-primary">Results Below!</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </header>
+
   <!-- Icons Grid -->
   <section class="features-icons bg-light text-center">
-    <header class="masthead text-white text-center">
       <div class="container">
         <div class="row">
           <div class="col-lg-3">
@@ -112,124 +140,14 @@
         </div>
       </div>
       </div>
-    </header>
   </section>
 
-  <!-- Image Showcases -->
-  <section class="showcase">
-    <div class="container-fluid p-0">
+  <!-- Display subbuttons after certain main buttons are selected -->
 
-      <div class="row no-gutters">
-        <div id="poster" class="col-lg-6 order-lg-2 text-white showcase-img"></div>
-        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-          <h2 id="displayTitleOne"></h2>
-          <p class="lead" id="displayDescriptionOne"></p>
-          <p class="font-weight-light genericText">Next Showtime Listed Below!</p>
-          <p class="font-weight-light genericText" id="displayNextShowtimeOne">Time: </p>
-          <p class="font-weight-light genericText" id="displayTheaterOne">Location: </p>
-        </div>
-      </div>
-
-      <div class="row no-gutters">
-        <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/css/bootstrap-landing-page-template/img/bg-showcase-2.jpg');"></div>
-        <div class="col-lg-6 my-auto showcase-text">
-          <h2 id="displayTitleTwo"></h2>
-          <p class="lead" id="displayDescriptionTwo"></p>
-          <p class="font-weight-light genericText">Next Showtime Listed Below!</p>
-          <p class="font-weight-light genericText" id="displayNextShowtimeTwo">Time: </p>
-          <p class="font-weight-light genericText" id="displayTheaterTwo">Location: </p>
-        </div>
-      </div>
-
-      <div class="row no-gutters">
-        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/css/bootstrap-landing-page-template/img/bg-showcase-3.jpg');"></div>
-        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-          <h2 id="displayTitleThree"></h2>
-          <p class="lead" id="displayDescriptionThree"></p>
-          <p class="font-weight-light genericText">Next Showtime Listed Below!</p>
-          <p class="font-weight-light genericText" id="displayNextShowtimeThree">Time: </p>
-          <p class="font-weight-light genericText" id="displayTheaterThree">Location: </p>
-        </div>
-      </div>
-
-      <div class="row no-gutters">
-        <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/css/bootstrap-landing-page-template/img/bg-showcase-2.jpg');"></div>
-        <div class="col-lg-6 my-auto showcase-text">
-          <h2 id="displayTitleFour"></h2>
-          <p class="lead" id="displayDescriptionFour"></p>
-          <p class="font-weight-light genericText">Next Showtime Listed Below!</p>
-          <p class="font-weight-light genericText" id="displayNextShowtimeFour">Time: </p>
-          <p class="font-weight-light genericText" id="displayTheaterFour">Location: </p>
-        </div>
-      </div>
-
-      <div class="row no-gutters">
-        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/css/bootstrap-landing-page-template/img/bg-showcase-3.jpg');"></div>
-        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-          <h2 id="displayTitleFive"></h2>
-          <p class="lead" id="displayDescriptionFive"></p>
-          <p class="font-weight-light genericText">Next Showtime Listed Below!</p>
-          <p class="font-weight-light genericText" id="displayNextShowtimeFive">Time: </p>
-          <p class="font-weight-light genericText" id="displayTheaterFive">Location: </p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Testimonials -->
-  <section class="testimonials text-center bg-light">
-    <div class="container">
-      <h2 class="mb-5">What people are saying...</h2>
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-            <img class="img-fluid rounded-circle mb-3" src="assets/css/bootstrap-landing-page-template/img/testimonials-1.jpg" alt="">
-            <h5>Margaret E.</h5>
-            <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-            <img class="img-fluid rounded-circle mb-3" src="assets/css/bootstrap-landing-page-template/img/testimonials-2.jpg" alt="">
-            <h5>Fred S.</h5>
-            <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-            <img class="img-fluid rounded-circle mb-3" src="assets/css/bootstrap-landing-page-template/img/testimonials-3.jpg" alt="">
-            <h5>Sarah W.</h5>
-            <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Call to Action -->
-  <section class="call-to-action text-white text-center">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-9 mx-auto">
-          <h2 class="mb-4">Ready to get started? Sign up now!</h2>
-        </div>
-        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-          <form>
-            <div class="form-row">
-              <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input type="email" class="form-control form-control-lg" placeholder="Enter your email...">
-              </div>
-              <div class="col-12 col-md-3">
-                <button type="submit" class="btn btn-block btn-lg btn-primary">Sign up!</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Display content from Search Bar -->
+  <div class="container">
+      <div id="movies" class="row"></div>
+  </div>
 
   <!-- Footer -->
   <footer class="footer bg-light">
@@ -281,9 +199,10 @@
   <!-- Bootstrap core JavaScript -->
   <script src="./assets/css/bootstrap-landing-page-template/vendor/jquery/jquery.min.js"></script>
   <script src="./assets/css/bootstrap-landing-page-template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Axios needs to be linked for the Search Bar -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <!-- link to project js -->
   <script src="./assets/javascript/app.js"></script>
-
 
 </body>
 
