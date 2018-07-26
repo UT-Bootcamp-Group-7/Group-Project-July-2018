@@ -1,0 +1,28 @@
+h3 {
+    color: black;
+    font-size: 24px;
+}
+
+.card {
+    padding-top: 5px;
+    padding-bottom: 1px;
+    margin: 3px;
+  }
+  
+  #mvTitle {
+  height: 1.15em;
+  word-wrap: break-word;
+  font-size: 125%;
+  
+  }
+  .card-deck{
+  width: 280px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  }
+  
+  img {
+    height: 330px;
+    width: 220px;
+    padding-top: 5px;
+  }
