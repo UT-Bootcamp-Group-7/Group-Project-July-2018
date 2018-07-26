@@ -255,6 +255,31 @@ $("#tvShowsOnTV").on("click", function () {
     });
 });
 
+//click handler for what's currently on TV - not from our suggested picks - so this will show top 10 shows
+
+$("#currentlyOnTV").on("click", function () {
+    //prevent refresh of the page on click
+    event.preventDefault();
+    //clear the api feedback div on every click
+    $("#apiFeedback").empty();
+    var gnTVQueryURL = `https://data.tmsapi.com/v1.1/programs/newShowAirings?lineupId=USA-TX42500-X&startDateTime=${gnDate}&api_key=${gnAPIKey}`;
+    console.log("This is the grace note Movie Showtime query: " + gnTVQueryURL);
+    $.get(gnTVQueryURL).then(async function (gnTVResponse) {
+        console.log(gnTVResponse);
+        results = gnTVResponse;
+        // for loop to generate the top 10 results
+        for (var i = 0; i < 10; i++) {
+            var omdbQueryURL = `https://www.omdbapi.com/?t=${results[i].title}&apikey=${omdbKey}`;
+            await $.get(omdbQueryURL).then(function (omdbResponse) {
+                //turn the object into an array
+                results2 = Object.values(omdbResponse);
+                console.log("THIS IS RESULTS 2:", results2)
+            });
+            $("#apiFeedback").append(`<div class="test">Title: ${results[i].program.title}<br>Description: ${results[i].program.shortDescription}<br>Next Showtime: ${results[i].startTime}<br>Playing On: ${results[i].station.callSign} on channel ${results[i].station.channel}<br><div id="poster"><img src="${results2[13]}"></div></div>`);
+        };
+    });
+});
+
 $(document).ready(function () {
     // Hidding the generic text on first load of the page, when a button is clicked then the text is shown.
     $(".genericText").hide();
