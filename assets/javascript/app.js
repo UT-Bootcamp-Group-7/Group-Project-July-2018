@@ -169,7 +169,9 @@ console.log("this is the encoded grace note date", gnDate);
 
 //click handler for whenever a user clicks on our suggested picks
 $("#ourSuggestedPick").on("click", function () {
+    //prevent the page from refreshing on click
     event.preventDefault();
+    //logic to show all buttons once our suggested pick is pressed
     $("#moviesInTheaters").removeAttr("hidden");
     $("#moviesOnTV").removeAttr("hidden");
     $("#tvShowsOnTV").removeAttr("hidden");
@@ -189,18 +191,21 @@ $("#moviesInTheaters").on("click", function () {
     // Using the same logic as the test search for movies in theaters  
     var gnMovieQueryURL = `https://data.tmsapi.com/v1.1/movies/showings?startDate=${gnDate}&zip=${zip}&api_key=${gnAPIKey}`;
     console.log("This is the grace note Movie Showtime query: " + gnMovieQueryURL);
+     //making first ajax request to retrieve a list of movies on TV from GraceNote. Notice that the function is set to async to allow for the secondary ajax call to finish loading before this function finishes.
     $.get(gnMovieQueryURL).then(async function (gnMovieResponse) {
         console.log(gnMovieResponse);
         results = gnMovieResponse;
-        //instead of a forloop here, just setting i to a random number between 0 and 5
+        //instead of a for loop here, just setting i to a random number between 0 and 5
         var i = Math.floor(Math.random() * 5)
         console.log("this is i: ", i)
         var omdbQueryURL = `https://www.omdbapi.com/?t=${results[i].title}&apikey=${omdbKey}`;
+        //making secondary ajax request to omdb using the title from the first ajax request as a parameter to retrieve the appropriate poster for the movie
         await $.get(omdbQueryURL).then(function (omdbResponse) {
             //turn the object into an array
             results2 = Object.values(omdbResponse);
             console.log("THIS IS RESULTS 2:", results2)
         });
+        //print the results to the page
         $("#apiFeedback").append(`<div class="test">Title: ${results[i].title}<br>Description: ${results[i].shortDescription}<br>Next Showtime: ${results[i].showtimes[0].dateTime}<br>Showing at: ${results[i].showtimes[i].theatre.name}<br><div id="poster"><img src="${results2[13]}"></div></div>`);
 
     });
@@ -214,23 +219,26 @@ $("#moviesOnTV").on("click", function () {
     $("#apiFeedback").empty();
     var gnTVMoviesQueryURL = `https://data.tmsapi.com/v1.1/movies/airings?lineupId=USA-TX42500-X&startDateTime=${gnDate}&api_key=${gnAPIKey}`;
     console.log("This is the grace note what movies are on TV query: " + gnTVMoviesQueryURL);
+    //making first ajax request to retrieve a list of movies on TV from GraceNote. Notice that the function is set to async to allow for the secondary ajax call to finish loading before this function finishes.
     $.get(gnTVMoviesQueryURL).then(async function (gnTVMoviesResponse) {
         console.log("This is the GraceNot TV Movies Response: ", gnTVMoviesResponse);
         results = gnTVMoviesResponse;
         //instead of a forloop here, just setting i to a random number between 0 and 100
         var i = Math.floor(Math.random() * 100)
         console.log("this is i: ", i)
-        //passing in the movie title to search for a poster
+        //making secondary ajax request to omdb using the title from the first ajax request as a parameter to retrieve the appropriate poster for the movie
         var omdbQueryURL = `https://www.omdbapi.com/?t=${results[i].program.title}&apikey=${omdbKey}`;
         await $.get(omdbQueryURL).then(function (omdbResponse) {
             //turn the object into an array
             results2 = Object.values(omdbResponse);
             console.log("THIS IS RESULTS 2:", results2)
         });
+        //print results to the page
         $("#apiFeedback").append(`<div class="test">Title: ${results[i].program.title}<br>Description: ${results[i].program.shortDescription}<br>Next Showtime: ${results[i].startTime}<br>Playing On: ${results[i].station.callSign} on channel ${results[i].station.channel}<br><div id="poster"><img src="${results2[13]}"></div></div>`);
     });
 });
 
+//click handler for whenever a user wants a suggested pick for tv shows playing on TV
 $("#tvShowsOnTV").on("click", function () {
     //prevent refresh of the page on click
     event.preventDefault();
@@ -238,25 +246,18 @@ $("#tvShowsOnTV").on("click", function () {
     $("#apiFeedback").empty();
     var gnTVQueryURL = `https://data.tmsapi.com/v1.1/programs/newShowAirings?lineupId=USA-TX42500-X&startDateTime=${gnDate}&api_key=${gnAPIKey}`;
     console.log("This is the grace note Movie Showtime query: " + gnTVQueryURL);
-    $.get(gnTVQueryURL).then(async function (gnTVResponse) {
+     //ajax request to GraceNote asking for a list of shows on tv
+    $.get(gnTVQueryURL).then(function (gnTVResponse) {
         console.log(gnTVResponse);
         results = gnTVResponse;
-        //instead of a forloop here, just setting i to a random number between 0 and 100
-        var i = Math.floor(Math.random() * 100)
+        //instead of a forloop here, just setting i to a random number between 0 and 199
+        var i = Math.floor(Math.random() * 199)
         console.log("this is i: ", i)
-        var omdbQueryURL = `https://www.omdbapi.com/?t=${results[i].title}&apikey=${omdbKey}`;
-        await $.get(omdbQueryURL).then(function (omdbResponse) {
-            //turn the object into an array
-            results2 = Object.values(omdbResponse);
-            console.log("THIS IS RESULTS 2:", results2)
-        });
-        $("#apiFeedback").append(`<div class="test">Title: ${results[i].program.title}<br>Description: ${results[i].program.shortDescription}<br>Next Showtime: ${results[i].startTime}<br>Playing On: ${results[i].station.callSign} on channel ${results[i].station.channel}<br><div id="poster"><img src="${results2[13]}"></div></div>`);
-
+        $("#apiFeedback").append(`<div class="test">Title: ${results[i].program.title}<br>Description: ${results[i].program.shortDescription}<br>Next Showtime: ${results[i].startTime}<br>Playing On: ${results[i].station.callSign} on channel ${results[i].station.channel}<br><div id="poster"><img src="./assets/images/genericTV.png"></div></div>`);
     });
 });
 
-//click handler for what's currently on TV - not from our suggested picks - so this will show top 10 shows
-
+//click handler for what's currently on TV - not from our suggested picks - so this will show top 10 shows from a possible list of ~199
 $("#currentlyOnTV").on("click", function () {
     //prevent refresh of the page on click
     event.preventDefault();
@@ -264,18 +265,15 @@ $("#currentlyOnTV").on("click", function () {
     $("#apiFeedback").empty();
     var gnTVQueryURL = `https://data.tmsapi.com/v1.1/programs/newShowAirings?lineupId=USA-TX42500-X&startDateTime=${gnDate}&api_key=${gnAPIKey}`;
     console.log("This is the grace note Movie Showtime query: " + gnTVQueryURL);
-    $.get(gnTVQueryURL).then(async function (gnTVResponse) {
+    //ajax request to GraceNote to retrieve the list of shows on TV
+    $.get(gnTVQueryURL).then(function (gnTVResponse) {
         console.log(gnTVResponse);
         results = gnTVResponse;
-        // for loop to generate the top 10 results
+        // for loop to generate the top 10 results passing in a random number called j
         for (var i = 0; i < 10; i++) {
-            var omdbQueryURL = `https://www.omdbapi.com/?t=${results[i].title}&apikey=${omdbKey}`;
-            await $.get(omdbQueryURL).then(function (omdbResponse) {
-                //turn the object into an array
-                results2 = Object.values(omdbResponse);
-                console.log("THIS IS RESULTS 2:", results2)
-            });
-            $("#apiFeedback").append(`<div class="test">Title: ${results[i].program.title}<br>Description: ${results[i].program.shortDescription}<br>Next Showtime: ${results[i].startTime}<br>Playing On: ${results[i].station.callSign} on channel ${results[i].station.channel}<br><div id="poster"><img src="${results2[13]}"></div></div>`);
+            j = Math.floor(Math.random() * 199);
+            console.log("this is j: ", j);
+            $("#apiFeedback").append(`<div class="test">Title: ${results[j].program.title}<br>Description: ${results[j].program.shortDescription}<br>Next Showtime: ${results[j].startTime}<br>Playing On: ${results[j].station.callSign} on channel ${results[j].station.channel}<br><div id="poster"><img src="./assets/images/genericTV.png"></div></div>`);
         };
     });
 });
