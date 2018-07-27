@@ -43,22 +43,23 @@
 <body>
   <!-- The body is split into two sections 1. Custom "Watch Next" Content and 2. the HTML body content from the landing page template -->
   <!-- 1. Custom "Watch Next" content -->
-  <h1>Find What's Next</h1>
+  <div id="testingRegion">
+    <h1>Find What's Next</h1>
 
-  <form>
+    <form>
 
-    <label>Grace Note Movie Show Time Lookup:</label>
-    <input id="gnMovies" type="submit">
-    <br>
-    <label>Grace Note What's on TV Search:</label>
-    <input id="gnTV" type="submit">
-    <br>
-    <label>Grace Note What Movies are on TV Search:</label>
-    <input id="gnTVMovies" type="submit">
-  </form>
+      <label>Grace Note Movie Show Time Lookup:</label>
+      <input id="gnMovies" type="submit">
+      <br>
+      <label>Grace Note What's on TV Search:</label>
+      <input id="gnTV" type="submit">
+      <br>
+      <label>Grace Note What Movies are on TV Search:</label>
+      <input id="gnTVMovies" type="submit">
+    </form>
 
-  <div id="apiFeedback"></div>
-
+    <div id="apiFeedback"></div>
+  </div>
   <!-- 2. HTML body content from the landing page template -->
 
   <!-- Navigation -->
@@ -95,53 +96,53 @@
 
   <!-- Icons Grid -->
   <section class="features-icons bg-light text-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3">
-            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-              <div class="features-icons-icon d-flex">
-                <i class="icon-rocket m-auto text-primary"></i>
-              </div>
-              <h3>Our Suggested Pick</h3>
-              <p class="lead">Allow us to provide our own content recommendation</p>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+              <i class="icon-rocket m-auto text-primary"></i>
             </div>
-            <button type="submit" id="ourSuggestedPick" class="btn btn-block btn-md btn-primary">Submit</button>
+            <h3>Our Suggested Pick</h3>
+            <p class="lead">Allow us to provide our own content recommendation</p>
           </div>
-          <div class="col-lg-3">
-            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-              <div class="features-icons-icon d-flex">
-                <i class="icon-film m-auto text-primary"></i>
-              </div>
-              <h3>In Theaters Now</h3>
-              <p class="lead mb-0">See what movies are playing in your area</p>
+          <button type="submit" id="ourSuggestedPick" class="btn btn-block btn-md btn-primary">Submit</button>
+        </div>
+        <div class="col-lg-3">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+              <i class="icon-film m-auto text-primary"></i>
             </div>
-            <button type="submit" id="inTheatersNow" class="btn btn-block btn-md btn-primary">Submit</button>
+            <h3>In Theaters Now</h3>
+            <p class="lead mb-0">See what movies are playing in your area</p>
           </div>
-          <div class="col-lg-3">
-            <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-              <div class="features-icons-icon d-flex">
-                <i class="icon-control-play m-auto text-primary"></i>
-              </div>
-              <h3>Currently on TV</h3>
-              <p class="lead mb-0">Find shows and movies playing on your cable box</p>
+          <button type="submit" id="inTheatersNow" class="btn btn-block btn-md btn-primary">Submit</button>
+        </div>
+        <div class="col-lg-3">
+          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+              <i class="icon-control-play m-auto text-primary"></i>
             </div>
-            <button type="submit" id="currentlyOnTV" class="btn btn-block btn-md btn-primary">Submit</button>
+            <h3>Currently on TV</h3>
+            <p class="lead mb-0">Find shows and movies playing on your cable box</p>
           </div>
-          <div class="col-lg-3">
-            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-              <div class="features-icons-icon d-flex">
-                <i class="icon-globe-alt m-auto text-primary"></i>
-              </div>
-              <h3>Discovery Quiz</h3>
-              <p class="lead mb-0">Use our celebrity quiz to find a film or show that fits you</p>
+          <button type="submit" id="currentlyOnTV" class="btn btn-block btn-md btn-primary">Submit</button>
+        </div>
+        <div class="col-lg-3">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+              <i class="icon-globe-alt m-auto text-primary"></i>
             </div>
-            <button type="submit" id="discoveryQuiz" class="btn btn-block btn-md btn-primary">Submit</button>
+            <h3>Discovery Quiz</h3>
+            <p class="lead mb-0">Use our celebrity quiz to find a film or show that fits you</p>
           </div>
+          <button type="submit" id="discoveryQuiz" class="btn btn-block btn-md btn-primary">Submit</button>
         </div>
       </div>
-      </div>
+    </div>
+    </div>
     </header>
-  
+
     <div class="container">
       <button class="btn btn-primary" type="button" id="moviesInTheaters" hidden>Movies in Theaters</button>
       <button class="btn btn-primary" type="button" id="moviesOnTV" hidden>Movies on TV</button>
@@ -149,74 +150,15 @@
     </div>
   </section>
 
-  <!-- Image Showcases -->
-  <section class="showcase">
-    <div class="container-fluid p-0">
-
-      <div class="row no-gutters">
-        <div id="poster" class="col-lg-6 order-lg-2 text-white showcase-img"></div>
-        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-          <h2 id="displayTitleOne"></h2>
-          <p class="lead" id="displayDescriptionOne"></p>
-          <p class="font-weight-light genericText">Next Showtime Listed Below!</p>
-          <p class="font-weight-light genericText" id="displayNextShowtimeOne">Time: </p>
-          <p class="font-weight-light genericText" id="displayTheaterOne">Location: </p>
-        </div>
-      </div>
-
-      <div class="row no-gutters">
-        <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/css/bootstrap-landing-page-template/img/bg-showcase-2.jpg');"></div>
-        <div class="col-lg-6 my-auto showcase-text">
-          <h2 id="displayTitleTwo"></h2>
-          <p class="lead" id="displayDescriptionTwo"></p>
-          <p class="font-weight-light genericText">Next Showtime Listed Below!</p>
-          <p class="font-weight-light genericText" id="displayNextShowtimeTwo">Time: </p>
-          <p class="font-weight-light genericText" id="displayTheaterTwo">Location: </p>
-        </div>
-      </div>
-
-      <div class="row no-gutters">
-        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/css/bootstrap-landing-page-template/img/bg-showcase-3.jpg');"></div>
-        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-          <h2 id="displayTitleThree"></h2>
-          <p class="lead" id="displayDescriptionThree"></p>
-          <p class="font-weight-light genericText">Next Showtime Listed Below!</p>
-          <p class="font-weight-light genericText" id="displayNextShowtimeThree">Time: </p>
-          <p class="font-weight-light genericText" id="displayTheaterThree">Location: </p>
-        </div>
-      </div>
-
-      <div class="row no-gutters">
-        <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/css/bootstrap-landing-page-template/img/bg-showcase-2.jpg');"></div>
-        <div class="col-lg-6 my-auto showcase-text">
-          <h2 id="displayTitleFour"></h2>
-          <p class="lead" id="displayDescriptionFour"></p>
-          <p class="font-weight-light genericText">Next Showtime Listed Below!</p>
-          <p class="font-weight-light genericText" id="displayNextShowtimeFour">Time: </p>
-          <p class="font-weight-light genericText" id="displayTheaterFour">Location: </p>
-        </div>
-      </div>
-
-      <div class="row no-gutters">
-        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/css/bootstrap-landing-page-template/img/bg-showcase-3.jpg');"></div>
-        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-          <h2 id="displayTitleFive"></h2>
-          <p class="lead" id="displayDescriptionFive"></p>
-          <p class="font-weight-light genericText">Next Showtime Listed Below!</p>
-          <p class="font-weight-light genericText" id="displayNextShowtimeFive">Time: </p>
-          <p class="font-weight-light genericText" id="displayTheaterFive">Location: </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Display subbuttons after certain main buttons are selected -->
 
   <!-- Display content from Search Bar -->
   <div class="container">
-      <div id="movies" class="row"></div>
+    <div id="movies" class="row"></div>
   </div>
 
+
+  
   <!-- Footer -->
   <footer class="footer bg-light">
     <div class="container">
