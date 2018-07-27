@@ -26,3 +26,8 @@ h3 {
     width: 220px;
     padding-top: 5px;
   }
+
+  .movieTitle {
+    font-size: 18px;
+    font-weight: bold;
+  }
