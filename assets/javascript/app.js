@@ -12,7 +12,7 @@ firebase.initializeApp(config);
 var database = firebase.database();
 //google authentication
 //function to log a user out
-$("#logout").on("click", function () {
+$("#logout").on("click", function (user) {
     event.preventDefault();
     console.log("logout was clicked!");
     firebase.auth().signOut().then(function () {
@@ -23,7 +23,7 @@ $("#logout").on("click", function () {
         console.log("ERROR: Sign Out Failed");
     });
 });
-$("#signIn").on("click", function login() {
+$("#signIn").on("click", function login(user) {
     event.preventDefault();
     console.log("signIn was clicked!");
     //newLogin checks if a user exists, if it does the login happened and passes user to app function
@@ -46,6 +46,12 @@ $("#signIn").on("click", function login() {
 
 // Hiding all of the divs that contain the buttons' results.
 $("#testingRegion").hide();
+
+function app(user) {
+//write user info to the page:
+$("#userName").text(user.displayName);
+$("#userImage").attr("src", user.photoURL);
+};
 
 
 //API KEYS
@@ -86,6 +92,10 @@ $("#inTheatersNow").on("click", function () {
     $("#moviesInTheaters").hide();
     $("#moviesOnTV").hide();
     $("#tvShowsOnTV").hide();
+    $("#celebrity").hide();
+    $("#inkBlot").hide();
+
+
     $("#movies").empty();
     var gnMovieQueryURL = `https://data.tmsapi.com/v1.1/movies/showings?startDate=${gnDate}&zip=${zip}&api_key=${gnAPIKey}`;
     console.log("This is the grace note Movie Showtime query: " + gnMovieQueryURL);
@@ -103,8 +113,6 @@ $("#inTheatersNow").on("click", function () {
             $("#movies").append(`<div class="card-deck"><div class="card"><div class="text-center movieTitle">${results[i].title}</div><div class="text-center" id="poster"><img src="${results2[13]}"></div><br>Description: ${results[i].shortDescription}<br>Next Showtime: ${results[i].showtimes[0].dateTime}<br>Showing at: ${results[i].showtimes[i].theatre.name}<br></div>`);
 
         };
-
-        console.log("This is Test Array:", testArray);
 
     });
 });
@@ -132,6 +140,8 @@ $("#ourSuggestedPick").on("click", function () {
     $("#moviesInTheaters").show();
     $("#moviesOnTV").show();
     $("#tvShowsOnTV").show();
+    $("#celebrity").hide();
+    $("#inkBlot").hide();
 });
 
 //click handler for whenever a user wants a suggested pick for movies in theaters
@@ -148,7 +158,7 @@ $("#moviesInTheaters").on("click", function () {
     // Using the same logic as the test search for movies in theaters  
     var gnMovieQueryURL = `https://data.tmsapi.com/v1.1/movies/showings?startDate=${gnDate}&zip=${zip}&api_key=${gnAPIKey}`;
     console.log("This is the grace note Movie Showtime query: " + gnMovieQueryURL);
-     //making first ajax request to retrieve a list of movies on TV from GraceNote. Notice that the function is set to async to allow for the secondary ajax call to finish loading before this function finishes.
+    //making first ajax request to retrieve a list of movies on TV from GraceNote. Notice that the function is set to async to allow for the secondary ajax call to finish loading before this function finishes.
     $.get(gnMovieQueryURL).then(async function (gnMovieResponse) {
         console.log(gnMovieResponse);
         results = gnMovieResponse;
@@ -203,7 +213,7 @@ $("#tvShowsOnTV").on("click", function () {
     $("#movies").empty();
     var gnTVQueryURL = `https://data.tmsapi.com/v1.1/programs/newShowAirings?lineupId=USA-TX42500-X&startDateTime=${gnDate}&api_key=${gnAPIKey}`;
     console.log("This is the grace note Movie Showtime query: " + gnTVQueryURL);
-     //ajax request to GraceNote asking for a list of shows on tv
+    //ajax request to GraceNote asking for a list of shows on tv
     $.get(gnTVQueryURL).then(function (gnTVResponse) {
         console.log(gnTVResponse);
         results = gnTVResponse;
@@ -221,6 +231,10 @@ $("#currentlyOnTV").on("click", function () {
     $("#moviesInTheaters").hide();
     $("#moviesOnTV").hide();
     $("#tvShowsOnTV").hide();
+    $("#celebrity").hide();
+    $("#inkBlot").hide();
+
+
     //clear the api feedback div on every click
     $("#movies").empty();
     var gnTVQueryURL = `https://data.tmsapi.com/v1.1/programs/newShowAirings?lineupId=USA-TX42500-X&startDateTime=${gnDate}&api_key=${gnAPIKey}`;
@@ -236,6 +250,26 @@ $("#currentlyOnTV").on("click", function () {
             $("#movies").append(`<div class="card-deck"><div class="card"><div class="text-center movieTitle">${results[j].program.title}</div><div class="text-center" id="poster"><img src="./assets/images/genericTV.png"><div class="card-body p-2"><div><br>Description: ${results[j].program.shortDescription}<br>Next Showtime: ${results[j].startTime}<br>Playing On: ${results[j].station.callSign} on channel ${results[j].station.channel}<br></div></div></div>`);
         };
     });
+});
+
+//click handler for when someone selects discovery quiz
+$("#discoveryQuiz").on("click", function () {
+    //prevent the page from refreshing on click
+    event.preventDefault();
+    //logic to show all buttons once our suggested pick is pressed
+    $("#celebrity").removeAttr("hidden");
+    $("#inkBlot").removeAttr("hidden");
+    $("#celebrity").show();
+    $("#inkBlot").show();
+    $("#moviesInTheaters").hide();
+    $("#moviesOnTV").hide();
+    $("#tvShowsOnTV").hide();
+});
+
+//click handler for when someone selects the celebrity picks
+$("#celebrity").on("click", function () {
+    //embedding the celeb.html page into the index.html page via an object tag - this is to keep with the single page application concept
+    $("#movies").html('<object width="100%" height="1000px"data="./celeb.html"/>');
 });
 
 
