@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Watch Next</title>
+  <title>Compass</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap core CSS -->
@@ -27,6 +27,8 @@
 
   <!-- Custom CSS Styling (As Needed) -->
   <link rel="stylesheet" type="text/css" href="./assets/css/custom-css/customizeTemplate.css">
+
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700|Titillium+Web" rel="stylesheet">
 
   <!-- jquery CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -80,7 +82,8 @@
     <div class="container">
       <div class="row">
         <div class="col-xl-9 mx-auto">
-          <h1 class="mb-5">Search for a Movie</h1>
+          <h1 class="headingText mb-5">Compass</h1>
+          <h2 class="subheadingText mb-5">Find What's Next</h2>
         </div>
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
           <form id="searchForm">
@@ -110,7 +113,7 @@
             <h3>Our Suggested Pick</h3>
             <p class="lead">Allow us to provide our own content recommendation</p>
           </div>
-          <button type="submit" id="ourSuggestedPick" class="btn btn-block btn-md btn-primary">Submit</button>
+          <button type="submit" id="ourSuggestedPick" class="btn btn-block btn-md btn-primary">Display Below</button>
         </div>
         <div class="col-lg-3">
           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
@@ -120,7 +123,7 @@
             <h3>In Theaters Now</h3>
             <p class="lead mb-0">See what movies are playing in your area</p>
           </div>
-          <button type="submit" id="inTheatersNow" class="btn btn-block btn-md btn-primary">Submit</button>
+          <button type="submit" id="inTheatersNow" class="btn btn-block btn-md btn-primary">Display Below</button>
         </div>
         <div class="col-lg-3">
           <div class="features-icons-item mx-auto mb-0 mb-lg-3">
@@ -130,7 +133,7 @@
             <h3>Currently on TV</h3>
             <p class="lead mb-0">Find shows and movies playing on your cable box</p>
           </div>
-          <button type="submit" id="currentlyOnTV" class="btn btn-block btn-md btn-primary">Submit</button>
+          <button type="submit" id="currentlyOnTV" class="btn btn-block btn-md btn-primary">Display Below</button>
         </div>
         <div class="col-lg-3">
           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
@@ -140,23 +143,78 @@
             <h3>Discovery Quiz</h3>
             <p class="lead mb-0">Use our celebrity quiz to find a film or show that fits you</p>
           </div>
-          <button type="submit" id="discoveryQuiz" class="btn btn-block btn-md btn-primary">Submit</button>
+          <button type="submit" id="discoveryQuiz" class="btn btn-block btn-md btn-primary">Display Below</button>
         </div>
       </div>
     </div>
     </div>
     </header>
 
-    <div class="container">
-      <button class="btn btn-primary" type="button" id="moviesInTheaters" hidden>Movies in Theaters</button>
-      <button class="btn btn-primary" type="button" id="moviesOnTV" hidden>Movies on TV</button>
-      <button class="btn btn-primary" type="button" id="tvShowsOnTV" hidden>TV Shows on TV</button>
-      <button class="btn btn-primary" type="button" id="celebrity" hidden>Celebrity Favorites</button>
-      <button class="btn btn-primary" type="button" id="inkBlot" hidden>Rorschach</button>
+    <!-- Suggested Pick Sub-buttons -->
+    <div class="container suggestedPick" hidden>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+              <i class="icon-rocket m-auto text-primary"></i>
+            </div>
+            <h3>Our Suggested Pick</h3>
+            <p class="lead">Movies in Theaters</p>
+          </div>
+          <button type="button" id="moviesInTheaters" class="btn btn-primary" hidden>Display Below</button>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+              <i class="icon-rocket m-auto text-primary"></i>
+            </div>
+            <h3>Our Suggested Pick</h3>
+            <p class="lead">Movies on TV</p>
+          </div>
+          <button type="button" id="moviesOnTV" class="btn btn-primary" hidden>Display Below</button>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+              <i class="icon-rocket m-auto text-primary"></i>
+            </div>
+            <h3>Our Suggested Pick</h3>
+            <p class="lead">TV Shows on TV</p>
+          </div>
+          <button type="button" id="tvShowsOnTV" class="btn btn-primary" hidden>Display Below</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Discovery Quiz Sub-buttons -->
+    <div class="container discoverySubButtons" hidden>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+              <i class="icon-globe-alt m-auto text-primary"></i>
+            </div>
+            <h3>Our Suggested Pick</h3>
+            <p class="lead">Celebrity Favorites</p>
+          </div>
+          <button class="btn btn-primary" type="button" id="celebrity" hidden>Display Below</button>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+              <i class="icon-globe-alt m-auto text-primary"></i>
+            </div>
+            <h3>Our Suggested Pick</h3>
+            <p class="lead">Rorschach</p>
+          </div>
+          <button class="btn btn-primary" type="button" id="inkBlot" hidden>Display Below</button>
+        </div>
+      </div>
     </div>
   </section>
-
-  <!-- Display subbuttons after certain main buttons are selected -->
 
   <!-- Display content from Search Bar -->
   <div class="container">

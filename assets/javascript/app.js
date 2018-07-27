@@ -92,6 +92,8 @@ $("#inTheatersNow").on("click", function () {
     $("#moviesInTheaters").hide();
     $("#moviesOnTV").hide();
     $("#tvShowsOnTV").hide();
+    $(".suggestedPick").hide();
+    $(".discoverySubButtons").hide();
     $("#celebrity").hide();
     $("#inkBlot").hide();
 
@@ -137,9 +139,12 @@ $("#ourSuggestedPick").on("click", function () {
     $("#moviesInTheaters").removeAttr("hidden");
     $("#moviesOnTV").removeAttr("hidden");
     $("#tvShowsOnTV").removeAttr("hidden");
+    $(".suggestedPick").removeAttr("hidden");
+    $(".suggestedPick").show();
     $("#moviesInTheaters").show();
     $("#moviesOnTV").show();
     $("#tvShowsOnTV").show();
+    $(".discoverySubButtons").hide();
     $("#celebrity").hide();
     $("#inkBlot").hide();
 });
@@ -231,6 +236,8 @@ $("#currentlyOnTV").on("click", function () {
     $("#moviesInTheaters").hide();
     $("#moviesOnTV").hide();
     $("#tvShowsOnTV").hide();
+    $(".suggestedPick").hide();
+    $(".discoverySubButtons").hide();
     $("#celebrity").hide();
     $("#inkBlot").hide();
 
@@ -257,13 +264,16 @@ $("#discoveryQuiz").on("click", function () {
     //prevent the page from refreshing on click
     event.preventDefault();
     //logic to show all buttons once our suggested pick is pressed
+    $(".discoverySubButtons").removeAttr("hidden");
     $("#celebrity").removeAttr("hidden");
     $("#inkBlot").removeAttr("hidden");
+    $(".discoverySubButtons").show();
     $("#celebrity").show();
     $("#inkBlot").show();
     $("#moviesInTheaters").hide();
     $("#moviesOnTV").hide();
     $("#tvShowsOnTV").hide();
+    $(".suggestedPick").hide();
 });
 
 //click handler for when someone selects the celebrity picks
