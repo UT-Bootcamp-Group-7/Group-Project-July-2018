@@ -31,3 +31,13 @@ h3 {
     font-size: 18px;
     font-weight: bold;
   }
+
+  .headingText {
+    font-weight: bold;
+    font-family: 'Titillium Web', sans-serif;
+  }
+
+  .subheadingText {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 20pt;
+  }
