@@ -47,13 +47,6 @@ $("#signIn").on("click", function login(user) {
 // Hiding all of the divs that contain the buttons' results.
 $("#testingRegion").hide();
 
-function app(user) {
-//write user info to the page:
-$("#userName").text(user.displayName);
-$("#userImage").attr("src", user.photoURL);
-};
-
-
 //API KEYS
 var ip;
 var gnQ;
