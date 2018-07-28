@@ -46,7 +46,9 @@ $("#signIn").on("click", function login(user) {
 
 // Hiding all of the divs that contain the buttons' results.
 $("#testingRegion").hide();
+function app (user){
 
+};
 //API KEYS
 var ip;
 var gnQ;
