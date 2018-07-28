@@ -52,7 +52,7 @@ function app (user){
 //API KEYS
 var ip;
 var gnQ;
-var gnAPIKey = "vbwkapt65qwb44jjw5vdc98h";
+var gnAPIKey = "pka4bvff8kt2ru6nsny8p3md";
 
 var omdbKey = "f7676cd9";
 // Other available gnAPIKeys
