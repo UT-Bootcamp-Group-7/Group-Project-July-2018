@@ -4,31 +4,31 @@
 To help user find content in new exciting ways.
 
 Application Features: 
-    1. Literal Search - Users can search specifically a movie title.
-    2. Suggested Picks - Users can see recommendation for movies in theaters, movies on TV, or TV show on TV.
-    3. In Theaters Now - User can browse through 5 recommendation currently in theaters within their zip code. The user will get the movie title, short description, next show time and theater name where it's playing close by.
-    4. Currently on TV - User can browse through 10 recommendation playing within 3 hrs of the current time. The user will get the channel name, channel number, show title, short description and show time.
-    5. Discovery Quiz - User can select 2 fun options of discovering content in non-traditional ways.
-        i. Celebrity Favorites - User can browse through their favorite celebrities' movies by clicking on celebrities' pictures and see the results.
-        ii. Rorschach - TBD
+1. Literal Search - Users can search specifically a movie title.
+2. Suggested Picks - Users can see recommendation for movies in theaters, movies on TV, or TV show on TV.
+3. In Theaters Now - User can browse through 5 recommendation currently in theaters within their zip code. The user will get the movie title, short description, next show time and theater name where it's playing close by.
+4. Currently on TV - User can browse through 10 recommendation playing within 3 hrs of the current time. The user will get the channel name, channel number, show title, short description and show time.
+5. Discovery Quiz - User can select 2 fun options of discovering content in non-traditional ways.
+* Celebrity Favorites - User can browse through their favorite celebrities' movies by clicking on celebrities' pictures and see the results.
+* Rorschach - TBD
         
 
 Technologies Used:  
-    1. HTML, CSS and JavaScript
-    2. Advanced CSS: BootStrap, Google fonts, Bootswatch
-    3. JQuery and Axios 
-    4. Advanced jQuery: Rawgit (flip effect)
-    5. AJAX and JSON for APIs
-    6. Firebase Authentication 
-    7. Moment.js
-    8. Git
-    9. Async/Await
+1. HTML, CSS and JavaScript
+2. Advanced CSS: BootStrap, Google fonts, Bootswatch
+3. JQuery and Axios 
+4. Advanced jQuery: Rawgit (flip effect)
+5. AJAX and JSON for API
+6. Firebase Authentication 
+7. Moment.js
+8. Git
+9. Async/Await
     
 APIs used: 
-    1. GraceNote - Movies in theaters, Movies on TV and TV show on TV
-    2. Open Movie Database - Returning posters for movies in theaters and on movies on TV
-    3. Geo IP Lookup - Returning the user's zip code
-    4. Moment.js - for current time
+1. GraceNote - Movies in theaters, Movies on TV and TV show on TV
+2. Open Movie Database - Returning posters for movies in theaters and on movies on TV
+3. Geo IP Lookup - Returning the user's zip code
+4. Moment.js - for current time
     
 
 **MVP**
